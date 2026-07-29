@@ -1,56 +1,50 @@
 // =============================================================================
-// Carga de histórico de KPIs Acumulados desde Excel
-// Archivo: KPI_ACUMULADO.xlsx
+// Carga de histórico de KPIs Acumulados
+// Archivo: KPI_ACUMULADO.xlsx  (hoja: Sheet1)
+// Columnas esperadas:
+// Anio, Semana, FechaSnapshot, FechaInicio, FechaCierre, Planta,
+// KPI_ID, Ciclo, Elemento, Indicador, Num, Den, Pct, Fuente, TsCarga
 // =============================================================================
-// Paso 1:
-// 1) Sube KPI_ACUMULADO.xlsx a DataFiles (o a tu carpeta conectada)
-// 2) Pega este script en el Editor de carga de datos
-// 3) Ajusta lib://DataFiles si usas otra conexión
-// 4) Reload
+// IMPORTANTE:
+// Se renombran campos con prefijo Acum_ para NO mezclarse con
+// Semana / Planta / fechas ya existentes en tu app.
 // =============================================================================
 
 SET ThousandSep='.';
 SET DecimalSep=',';
 SET DateFormat='DD-MM-YYYY';
+SET TimestampFormat='DD-MM-YYYY hh:mm:ss';
 
-// --- Calendario / tipado opcional al cargar ---
 KPI_ACUMULADO:
 LOAD
-    Anio,
-    Semana,
-    Date(FechaSnapshot)          as FechaSnapshot,
-    Date(FechaInicio)            as FechaInicio,
-    Date(FechaCierre)            as FechaCierre,
-    Planta,
-    KPI_ID,
-    Ciclo,
-    Elemento,
-    Indicador,
-    Num,
-    Den,
-    If(Len(Trim(Pct)) = 0 or IsNull(Pct),
-        If(Den = 0, Null(), Num / Den),
-        Pct
-    )                            as Pct,
-    Fuente,
-    Timestamp(TsCarga)           as TsCarga,
-    // Clave útil para control de duplicados
-    Anio & '|' & Semana & '|' & Planta & '|' & KPI_ID as ClaveSnapshot
+    Anio                                              as Acum_Anio,
+    Semana                                            as Acum_Semana,
+    Date(Date#(FechaSnapshot, 'DD-MM-YYYY'))          as Acum_FechaSnapshot,
+    Date(Date#(FechaInicio, 'DD-MM-YYYY'))            as Acum_FechaInicio,
+    Date(Date#(FechaCierre, 'DD-MM-YYYY'))            as Acum_FechaCierre,
+    Planta                                            as Acum_Planta,
+    KPI_ID                                            as KPI_ID,
+    Ciclo                                             as Acum_Ciclo,
+    Elemento                                          as Acum_Elemento,
+    Indicador                                         as Acum_Indicador,
+    Num#(Num, '#.')                                   as Num,
+    Num#(Den, '#.')                                   as Den,
+    If(Len(Trim(Text(Pct))) = 0 or IsNull(Pct),
+        If(Num#(Den, '#.') = 0, Null(), Num#(Num, '#.') / Num#(Den, '#.')),
+        Num#(Pct, '#.####')
+    )                                                 as Pct,
+    Fuente                                            as Acum_Fuente,
+    Timestamp(Timestamp#(TsCarga, 'DD-MM-YYYY hh:mm:ss')) as Acum_TsCarga,
+    Anio & '|' & Semana & '|' & Planta & '|' & KPI_ID as ClaveSnapshot,
+    Num#(Num, '#.') & '/' & Num#(Den, '#.')           as Fraccion,
+    Dual('Semana ' & Semana, Semana)                  as Acum_SemanaLabel
 FROM [lib://DataFiles/KPI_ACUMULADO.xlsx]
 (ooxml, embedded labels, table is Sheet1);
 
-// --- Campos derivados útiles para el front ---
-LEFT JOIN (KPI_ACUMULADO)
-LOAD
-    ClaveSnapshot,
-    Num & '/' & Den              as Fraccion,
-    Dual('Semana ' & Semana, Semana) as SemanaLabel
-RESIDENT KPI_ACUMULADO;
-
 // =============================================================================
-// Expresiones sugeridas en el front (filas grises / Acumulado)
-// =============================================================================
-// Fracción (como en tu tablero):
+// Expresiones sugeridas en el front (cuando conectes los KPIs grises):
+//
+// Fracción:
 //   Sum({<KPI_ID={'2.2_KPI_Avance_Doc'}>} Num)
 //   & '/' &
 //   Sum({<KPI_ID={'2.2_KPI_Avance_Doc'}>} Den)
@@ -60,5 +54,6 @@ RESIDENT KPI_ACUMULADO;
 //   /
 //   Sum({<KPI_ID={'2.2_KPI_Avance_Doc'}>} Den)
 //
-// Con el filtro Semana / Año activo, verás la foto de esa semana.
+// Filtros del histórico:
+//   Acum_Semana , Acum_Anio , Acum_Planta
 // =============================================================================

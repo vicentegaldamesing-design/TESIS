@@ -1,0 +1,4 @@
+FechaSnapshot,Anio,Semana,FechaInicio,FechaCierre,Planta,KPI_ID,Ciclo,Elemento,Indicador,Num,Den,Pct,Fuente,TsCarga
+2026-07-18,2026,29,2026-07-13,2026-07-19,Celulosa,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),1130,2244,0.5036,SoftExpert/Qlik,2026-07-18T18:00:00
+2026-07-18,2026,29,2026-07-13,2026-07-19,Planta Constitución,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),,,,SoftExpert/Qlik,2026-07-18T18:00:00
+2026-07-25,2026,30,2026-07-20,2026-07-26,Celulosa,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),,,,SoftExpert/Qlik,2026-07-25T18:00:00

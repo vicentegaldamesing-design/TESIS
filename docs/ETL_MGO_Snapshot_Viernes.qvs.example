@@ -1,0 +1,135 @@
+// =============================================================================
+// ETL_MGO_Snapshot_Viernes.qvs
+// Captura semanal (idealmente viernes) de KPIs Acumulados para histórico
+// =============================================================================
+// Uso:
+// 1) Programar Reload Task cada viernes post-cierre operativo
+// 2) El script es idempotente por clave Anio|Semana|Planta|KPI_ID
+// 3) El dashboard de cumplimiento debe leer HIST_KPI_ACUMULADO para filas grises
+// =============================================================================
+
+SET ThousandSep='.';
+SET DecimalSep=',';
+SET DateFormat='DD-MM-YYYY';
+
+LET vHoy = Date(Today(), 'DD-MM-YYYY');
+LET vAnio = Year(Today());
+LET vSemana = Week(Today());
+LET vFechaInicio = Date(WeekStart(Today()), 'DD-MM-YYYY');
+LET vFechaCierre = Date(WeekStart(Today()) + 6, 'DD-MM-YYYY');
+LET vTsCarga = Timestamp(Now());
+
+// -----------------------------------------------------------------------------
+// 0) Cargar histórico existente (si ya hay QVD)
+// -----------------------------------------------------------------------------
+IF FileSize('lib://Data/HIST_KPI_ACUMULADO.qvd') > 0 THEN
+  HIST_KPI_ACUMULADO:
+  LOAD *
+  FROM [lib://Data/HIST_KPI_ACUMULADO.qvd] (qvd);
+
+  // Idempotencia: borra la semana actual si se reprocesa
+  INNER JOIN (HIST_KPI_ACUMULADO)
+  LOAD
+    Anio,
+    Semana,
+    Planta,
+    KPI_ID
+  WHERE NOT (Anio = $(vAnio) AND Semana = $(vSemana));
+  // Nota: la exclusión real se hace mejor con Where Not Exists / Concatenate selectivo.
+  // Abajo se usa patrón más claro: filtrar al guardar.
+END IF
+
+// -----------------------------------------------------------------------------
+// 1) Ejemplo de cálculo vivo para 2.2_KPI_Avance_Doc
+//    Ajustar joins/campos a tu modelo real (Avance_, Planta, etc.)
+// -----------------------------------------------------------------------------
+// NUM por planta
+TMP_NUM_22:
+LOAD
+  Planta,
+  Count([Avance_.id]) as Num
+WHERE Estado_DOC_Avance = 'Aprobado'
+  AND Match([Avance_.OrigenDoc], 'Plan inicial', 'Modificación plan')
+GROUP BY Planta
+;
+// En la práctica este bloque suele venir de Resident / Fact ya cargada.
+
+// DEN por planta (CONFIRMAR con negocio: universo del plan)
+TMP_DEN_22:
+LOAD
+  Planta,
+  Count([Avance_.id]) as Den
+WHERE Match([Avance_.OrigenDoc], 'Plan inicial', 'Modificación plan')
+GROUP BY Planta
+;
+
+TMP_SNAP_22:
+LOAD
+  Date#('$(vHoy)', 'DD-MM-YYYY') as FechaSnapshot,
+  $(vAnio) as Anio,
+  $(vSemana) as Semana,
+  Date#('$(vFechaInicio)', 'DD-MM-YYYY') as FechaInicio,
+  Date#('$(vFechaCierre)', 'DD-MM-YYYY') as FechaCierre,
+  N.Planta as Planta,
+  '2.2_KPI_Avance_Doc' as KPI_ID,
+  '2. Ejecución' as Ciclo,
+  '2. Gestión documental' as Elemento,
+  '2. % Avance plan documental (Acumulado)' as Indicador,
+  N.Num as Num,
+  D.Den as Den,
+  If(D.Den = 0, Null(), N.Num / D.Den) as Pct,
+  'SoftExpert/Qlik' as Fuente,
+  Timestamp#('$(vTsCarga)') as TsCarga
+RESIDENT TMP_NUM_22 N
+LEFT JOIN
+LOAD Planta, Den RESIDENT TMP_DEN_22;
+
+// -----------------------------------------------------------------------------
+// 2) Repetir el patrón TMP_SNAP_xx para el resto de KPIs acumulados
+// -----------------------------------------------------------------------------
+// TMP_SNAP_xx: ...
+
+// -----------------------------------------------------------------------------
+// 3) Consolidar snapshot de la semana y mergear con histórico previo
+// -----------------------------------------------------------------------------
+SNAP_SEMANA_ACTUAL:
+NoConcatenate
+LOAD * RESIDENT TMP_SNAP_22;
+// CONCATENATE (SNAP_SEMANA_ACTUAL) LOAD * RESIDENT TMP_SNAP_xx;
+
+IF FileSize('lib://Data/HIST_KPI_ACUMULADO.qvd') > 0 THEN
+  HIST_PREV:
+  NoConcatenate
+  LOAD *
+  FROM [lib://Data/HIST_KPI_ACUMULADO.qvd] (qvd)
+  WHERE NOT (Anio = $(vAnio) AND Semana = $(vSemana));
+
+  HIST_KPI_ACUMULADO:
+  NoConcatenate
+  LOAD * RESIDENT HIST_PREV;
+  CONCATENATE (HIST_KPI_ACUMULADO)
+  LOAD * RESIDENT SNAP_SEMANA_ACTUAL;
+
+  DROP TABLE HIST_PREV;
+ELSE
+  HIST_KPI_ACUMULADO:
+  NoConcatenate
+  LOAD * RESIDENT SNAP_SEMANA_ACTUAL;
+END IF
+
+STORE HIST_KPI_ACUMULADO INTO [lib://Data/HIST_KPI_ACUMULADO.qvd] (qvd);
+
+DROP TABLES TMP_NUM_22, TMP_DEN_22, TMP_SNAP_22, SNAP_SEMANA_ACTUAL;
+
+// -----------------------------------------------------------------------------
+// 4) Expresiones sugeridas en el front (filas Acumulado)
+// -----------------------------------------------------------------------------
+// Fracción:
+//   Sum({<KPI_ID={'2.2_KPI_Avance_Doc'}>} Num) & '/' &
+//   Sum({<KPI_ID={'2.2_KPI_Avance_Doc'}>} Den)
+//
+// Porcentaje:
+//   Sum({<KPI_ID={'2.2_KPI_Avance_Doc'}>} Num) /
+//   Sum({<KPI_ID={'2.2_KPI_Avance_Doc'}>} Den)
+//
+// Con Semana/Año seleccionados en el panel de filtros, cada semana muestra su foto.

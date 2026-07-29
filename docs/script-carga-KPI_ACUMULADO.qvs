@@ -1,0 +1,64 @@
+// =============================================================================
+// Carga de histórico de KPIs Acumulados desde Excel
+// Archivo: KPI_ACUMULADO.xlsx
+// =============================================================================
+// Paso 1:
+// 1) Sube KPI_ACUMULADO.xlsx a DataFiles (o a tu carpeta conectada)
+// 2) Pega este script en el Editor de carga de datos
+// 3) Ajusta lib://DataFiles si usas otra conexión
+// 4) Reload
+// =============================================================================
+
+SET ThousandSep='.';
+SET DecimalSep=',';
+SET DateFormat='DD-MM-YYYY';
+
+// --- Calendario / tipado opcional al cargar ---
+KPI_ACUMULADO:
+LOAD
+    Anio,
+    Semana,
+    Date(FechaSnapshot)          as FechaSnapshot,
+    Date(FechaInicio)            as FechaInicio,
+    Date(FechaCierre)            as FechaCierre,
+    Planta,
+    KPI_ID,
+    Ciclo,
+    Elemento,
+    Indicador,
+    Num,
+    Den,
+    If(Len(Trim(Pct)) = 0 or IsNull(Pct),
+        If(Den = 0, Null(), Num / Den),
+        Pct
+    )                            as Pct,
+    Fuente,
+    Timestamp(TsCarga)           as TsCarga,
+    // Clave útil para control de duplicados
+    Anio & '|' & Semana & '|' & Planta & '|' & KPI_ID as ClaveSnapshot
+FROM [lib://DataFiles/KPI_ACUMULADO.xlsx]
+(ooxml, embedded labels, table is Sheet1);
+
+// --- Campos derivados útiles para el front ---
+LEFT JOIN (KPI_ACUMULADO)
+LOAD
+    ClaveSnapshot,
+    Num & '/' & Den              as Fraccion,
+    Dual('Semana ' & Semana, Semana) as SemanaLabel
+RESIDENT KPI_ACUMULADO;
+
+// =============================================================================
+// Expresiones sugeridas en el front (filas grises / Acumulado)
+// =============================================================================
+// Fracción (como en tu tablero):
+//   Sum({<KPI_ID={'2.2_KPI_Avance_Doc'}>} Num)
+//   & '/' &
+//   Sum({<KPI_ID={'2.2_KPI_Avance_Doc'}>} Den)
+//
+// Porcentaje:
+//   Sum({<KPI_ID={'2.2_KPI_Avance_Doc'}>} Num)
+//   /
+//   Sum({<KPI_ID={'2.2_KPI_Avance_Doc'}>} Den)
+//
+// Con el filtro Semana / Año activo, verás la foto de esa semana.
+// =============================================================================

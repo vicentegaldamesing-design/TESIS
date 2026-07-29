@@ -1,0 +1,57 @@
+Anio,Semana,FechaSnapshot,FechaInicio,FechaCierre,Planta,KPI_ID,Ciclo,Elemento,Indicador,Num,Den,Pct,Fuente,TsCarga
+2026,28,10-07-2026,06-07-2026,12-07-2026,Celulosa,1.1_KPI_Cumpl_Plan,1. Planificación,1. Plan de trabajo,1. Cumplimiento plan Real / Planificado (Acumulado),800,1000,0.8000,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Celulosa,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),1050,2200,0.4773,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Celulosa,2.X_KPI_Cierre_AM,2. Ejecución,3. Acciones de mejora,2. %Cierre Acciones de Mejora (Acumulado),40,50,0.8000,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Celulosa,3.1_KPI_Inv_N3,3. Verificación,1. Investigaciones,1. %Investigaciones cerradas (Nivel 3 o más) (Acumulado),10,12,0.8333,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Celulosa,3.2_KPI_Acc_N3,3. Verificación,1. Investigaciones,2. %Acciones cerradas en plazo (Nivel 3 o más) (Acumulado),20,25,0.8000,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Celulosa,3.4_KPI_Inv_N12,3. Verificación,1. Investigaciones,4. %Investigaciones cerradas (Nivel 1 y 2) (Acumulado),30,35,0.8571,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Celulosa,3.5_KPI_Acc_N12,3. Verificación,1. Investigaciones,5. %Acciones cerradas en plazo (Nivel 1 y 2) (Acumulado),45,50,0.9000,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Celulosa,4.1_KPI_Mejoras_SE,4. Aprendizaje,1. SoftExpert,1. % de mejoras cerradas de la matriz en softexpert (Acumulado),15,20,0.7500,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Planta Constitución,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),100,200,0.5000,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Planta Línea 2,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),80,150,0.5333,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Planta Línea 3,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),90,180,0.5000,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Planta Nueva Aldea,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),70,140,0.5000,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Planta Puerto Esperanza,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),60,120,0.5000,Manual,10-07-2026 18:00:00
+2026,28,10-07-2026,06-07-2026,12-07-2026,Planta Valdivia,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),110,220,0.5000,Manual,10-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Celulosa,1.1_KPI_Cumpl_Plan,1. Planificación,1. Plan de trabajo,1. Cumplimiento plan Real / Planificado (Acumulado),850,1000,0.8500,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Celulosa,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),1130,2244,0.5036,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Celulosa,2.X_KPI_Cierre_AM,2. Ejecución,3. Acciones de mejora,2. %Cierre Acciones de Mejora (Acumulado),42,50,0.8400,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Celulosa,3.1_KPI_Inv_N3,3. Verificación,1. Investigaciones,1. %Investigaciones cerradas (Nivel 3 o más) (Acumulado),11,12,0.9167,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Celulosa,3.2_KPI_Acc_N3,3. Verificación,1. Investigaciones,2. %Acciones cerradas en plazo (Nivel 3 o más) (Acumulado),21,25,0.8400,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Celulosa,3.4_KPI_Inv_N12,3. Verificación,1. Investigaciones,4. %Investigaciones cerradas (Nivel 1 y 2) (Acumulado),31,35,0.8857,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Celulosa,3.5_KPI_Acc_N12,3. Verificación,1. Investigaciones,5. %Acciones cerradas en plazo (Nivel 1 y 2) (Acumulado),46,50,0.9200,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Celulosa,4.1_KPI_Mejoras_SE,4. Aprendizaje,1. SoftExpert,1. % de mejoras cerradas de la matriz en softexpert (Acumulado),16,20,0.8000,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Planta Constitución,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),110,210,0.5238,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Planta Línea 2,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),85,155,0.5484,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Planta Línea 3,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),95,185,0.5135,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Planta Nueva Aldea,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),75,145,0.5172,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Planta Puerto Esperanza,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),65,125,0.5200,Manual,18-07-2026 18:00:00
+2026,29,18-07-2026,13-07-2026,19-07-2026,Planta Valdivia,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),115,225,0.5111,Manual,18-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Celulosa,1.1_KPI_Cumpl_Plan,1. Planificación,1. Plan de trabajo,1. Cumplimiento plan Real / Planificado (Acumulado),880,1000,0.8800,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Celulosa,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),1200,2300,0.5217,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Celulosa,2.X_KPI_Cierre_AM,2. Ejecución,3. Acciones de mejora,2. %Cierre Acciones de Mejora (Acumulado),44,52,0.8462,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Celulosa,3.1_KPI_Inv_N3,3. Verificación,1. Investigaciones,1. %Investigaciones cerradas (Nivel 3 o más) (Acumulado),12,13,0.9231,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Celulosa,3.2_KPI_Acc_N3,3. Verificación,1. Investigaciones,2. %Acciones cerradas en plazo (Nivel 3 o más) (Acumulado),22,26,0.8462,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Celulosa,3.4_KPI_Inv_N12,3. Verificación,1. Investigaciones,4. %Investigaciones cerradas (Nivel 1 y 2) (Acumulado),32,36,0.8889,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Celulosa,3.5_KPI_Acc_N12,3. Verificación,1. Investigaciones,5. %Acciones cerradas en plazo (Nivel 1 y 2) (Acumulado),47,51,0.9216,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Celulosa,4.1_KPI_Mejoras_SE,4. Aprendizaje,1. SoftExpert,1. % de mejoras cerradas de la matriz en softexpert (Acumulado),17,21,0.8095,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Planta Constitución,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),120,220,0.5455,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Planta Línea 2,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),90,160,0.5625,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Planta Línea 3,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),100,190,0.5263,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Planta Nueva Aldea,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),80,150,0.5333,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Planta Puerto Esperanza,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),70,130,0.5385,Manual,25-07-2026 18:00:00
+2026,30,25-07-2026,20-07-2026,26-07-2026,Planta Valdivia,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),120,230,0.5217,Manual,25-07-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Celulosa,1.1_KPI_Cumpl_Plan,1. Planificación,1. Plan de trabajo,1. Cumplimiento plan Real / Planificado (Acumulado),900,1000,0.9000,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Celulosa,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),1250,2350,0.5319,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Celulosa,2.X_KPI_Cierre_AM,2. Ejecución,3. Acciones de mejora,2. %Cierre Acciones de Mejora (Acumulado),46,53,0.8679,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Celulosa,3.1_KPI_Inv_N3,3. Verificación,1. Investigaciones,1. %Investigaciones cerradas (Nivel 3 o más) (Acumulado),12,13,0.9231,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Celulosa,3.2_KPI_Acc_N3,3. Verificación,1. Investigaciones,2. %Acciones cerradas en plazo (Nivel 3 o más) (Acumulado),23,26,0.8846,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Celulosa,3.4_KPI_Inv_N12,3. Verificación,1. Investigaciones,4. %Investigaciones cerradas (Nivel 1 y 2) (Acumulado),33,36,0.9167,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Celulosa,3.5_KPI_Acc_N12,3. Verificación,1. Investigaciones,5. %Acciones cerradas en plazo (Nivel 1 y 2) (Acumulado),48,52,0.9231,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Celulosa,4.1_KPI_Mejoras_SE,4. Aprendizaje,1. SoftExpert,1. % de mejoras cerradas de la matriz en softexpert (Acumulado),18,21,0.8571,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Planta Constitución,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),130,230,0.5652,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Planta Línea 2,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),95,165,0.5758,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Planta Línea 3,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),105,195,0.5385,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Planta Nueva Aldea,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),85,155,0.5484,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Planta Puerto Esperanza,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),75,135,0.5556,Manual,01-08-2026 18:00:00
+2026,31,01-08-2026,27-07-2026,02-08-2026,Planta Valdivia,2.2_KPI_Avance_Doc,2. Ejecución,2. Gestión documental,2. % Avance plan documental (Acumulado),125,235,0.5319,Manual,01-08-2026 18:00:00

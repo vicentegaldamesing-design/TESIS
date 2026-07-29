@@ -1,0 +1,35 @@
+// =============================================================================
+// Carga histórica KPIs Acumulados - versión para CONECTAR al tablero
+// Archivo: KPI_ACUMULADO.xlsx
+// Tabla Excel: KPI_ACUMULADO
+// Columnas: Anio, Semana, Planta, KPI_ID, Indicador, Num, Den
+// =============================================================================
+// Semana / Anio / Planta quedan SIN prefijo para asociarse al filtro del tablero.
+// Num/Den van como Acum_Num / Acum_Den para no chocar con otros hechos.
+// =============================================================================
+
+SET ThousandSep='.';
+SET DecimalSep=',';
+SET DateFormat='DD-MM-YYYY';
+
+KPI_ACUMULADO:
+LOAD
+    Anio                                              as Anio,
+    Semana                                            as Semana,
+    Planta                                            as Planta,
+    KPI_ID                                            as KPI_ID,
+    Indicador                                         as Acum_Indicador,
+    If(IsNum(Num), Num, Num#(Text(Num), '#.'))        as Acum_Num,
+    If(IsNum(Den), Den, Num#(Text(Den), '#.'))        as Acum_Den,
+    If(If(IsNum(Den), Den, Num#(Text(Den), '#.')) = 0, Null(),
+       If(IsNum(Num), Num, Num#(Text(Num), '#.'))
+       /
+       If(IsNum(Den), Den, Num#(Text(Den), '#.'))
+    )                                                 as Acum_Pct,
+    Anio & '|' & Semana & '|' & Planta & '|' & KPI_ID as ClaveSnapshot,
+    If(IsNum(Num), Num, Num#(Text(Num), '#.'))
+    & '/' &
+    If(IsNum(Den), Den, Num#(Text(Den), '#.'))        as Acum_Fraccion,
+    Dual('Semana ' & Semana, Semana)                  as Acum_SemanaLabel
+FROM [lib://AttachedFiles/KPI_ACUMULADO.xlsx]
+(ooxml, embedded labels, table is KPI_ACUMULADO);
